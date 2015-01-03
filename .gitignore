@@ -1,0 +1,11 @@
+.DS_Store
+Zelda/frameworks/
+Zelda/res/
+Zelda/src/
+Zelda/tools/
+Zelda/.cocos-project.json
+Zelda/CMakeLists.txt
+Zelda/index.html
+Zelda/main.js
+Zelda/project.json
+.idea
