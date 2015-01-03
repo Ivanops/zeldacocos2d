@@ -1,65 +1,35 @@
 HelloWorldLayer = cc.Layer.extend
-  sprite: null
+
   ctor: ->
 
-    #////////////////////////////
-    # 1. super init first
     @_super()
 
-    #///////////////////////////
-    # 2. add a menu item with "X" image, which is clicked to quit the program
-    #    you may modify it.
-    # ask director the window size
-    size = cc.director.getWinSize()
+    cc.spriteFrameCache.addSpriteFrames 'res/walksdadcas.plist'
+    spriteCache = cc.textureCache.addImage 'res/walksdadcas.png'
 
-    # add a "close" icon to exit the progress. it's an autorelease object
-    closeItem = cc.MenuItemImage.create 'res/CloseNormal.png', 'res/CloseSelected.png', ->
-      ShowHelp()
-    , this
 
-    closeItem.attr
-      x: size.width - 20
-      y: 20
-      anchorX: 0.5
-      anchorY: 0.5
+    spriteBatch = new cc.SpriteBatchNode spriteCache
 
-    menu = cc.Menu.create closeItem
-    menu.x = 0
-    menu.y = 0
-    @addChild menu, 1
+    frames = []
+    for i in [1 .. 10]
+      index = if i < 10 then '0' + i else i
+      frames.push cc.spriteFrameCache.getSpriteFrame "walk_#{index}.png"
 
-    #///////////////////////////
-    # 3. add your codes below...
-    # add a label shows "Hello World"
-    # create and initialize a label
-    helloLabel = cc.LabelTTF.create "Hello coco !", "Arial", 38
+    animation = new cc.Animation frames, 0.1
+    cc.animationCache.addAnimation animation, 'walk'
 
-    # position the label on the center of the screen
-    helloLabel.x = size.width / 2
-    helloLabel.y = 0
+    @addChild spriteBatch
 
-    # add the label as a child to this layer
-    @addChild helloLabel, 5
+    #sprite = new cc.Sprite(cc.spriteFrameCache.getSpriteFrame('walk_01.png'))
 
-    # add "HelloWorld" splash screen"
-    @sprite = cc.Sprite.create 'res/HelloWorld.png'
-    @sprite.attr
-      x: size.width / 2
-      y: size.height / 2
-      scale: 0.5
-      rotation: 180
+    console.log cc.spriteFrameCache
 
-    @addChild @sprite, 0
+    size = cc.winSize
 
-    rotateToA = cc.RotateTo.create 2, 0
-    scaleToA = cc.ScaleTo.create 2, 1, 1
-    @sprite.runAction cc.Sequence.create rotateToA, scaleToA
-    helloLabel.runAction cc.Spawn.create(cc.MoveBy.create(2.5, cc.p(0, size.height - 40)), cc.TintTo.create(2.5, 255, 125, 0))
+    #sprite.x = size.width / 2
+    #sprite.y = size.height / 2
 
-    # test lodash
-    console.log _
-    console.log _.assign { 'a': 1 }, { 'b': 2 }, { 'c': 3 }
-    console.log _.map [1, 2, 3], (n) -> n * 3
+    #@addChild sprite
 
     true
 
