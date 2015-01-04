@@ -4,8 +4,8 @@ HelloWorldLayer = cc.Layer.extend
 
     @_super()
 
-    cc.spriteFrameCache.addSpriteFrames 'res/walksdadcas.plist'
-    spriteCache = cc.textureCache.addImage 'res/walksdadcas.png'
+    cc.spriteFrameCache.addSpriteFrames 'res/walk.plist'
+    spriteCache = cc.textureCache.addImage 'res/walk.png'
 
 
     spriteBatch = new cc.SpriteBatchNode spriteCache
@@ -20,16 +20,20 @@ HelloWorldLayer = cc.Layer.extend
 
     @addChild spriteBatch
 
-    #sprite = new cc.Sprite(cc.spriteFrameCache.getSpriteFrame('walk_01.png'))
+    sprite = new cc.Sprite(cc.spriteFrameCache.getSpriteFrame('walk_01.png'))
 
     console.log cc.spriteFrameCache
 
     size = cc.winSize
 
-    #sprite.x = size.width / 2
-    #sprite.y = size.height / 2
+    sprite.x = size.width / 2
+    sprite.y = size.height / 2
 
-    #@addChild sprite
+    sprite.setScale 3
+
+    @addChild sprite
+
+    sprite.runAction cc.repeatForever new cc.Animate animation
 
     true
 

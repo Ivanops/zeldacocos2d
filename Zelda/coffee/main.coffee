@@ -3,7 +3,7 @@ cc.game.onStart = ->
   cc.view.resizeWithBrowserSize true
 
   #load resources
-  cc.LoaderScene.preload ['res/CloseNormal.png', 'res/CloseSelected.png', 'res/HelloWorld.png', 'res/walksdadcas.plist', 'res/walksdadcas.png'], ->
+  cc.LoaderScene.preload ['res/CloseNormal.png', 'res/CloseSelected.png', 'res/HelloWorld.png', 'res/walk.plist', 'res/walk.png'], ->
     cc.director.runScene new HelloWorldScene()
   , this
 
